@@ -52,7 +52,7 @@ class Banco:
         Retorna:
             None
         """
-        diretorio = Path('dados')
+        diretorio = Path('.dados')
         diretorio.mkdir(parents=True, exist_ok=True)
 
         self.cabecalho = cabecalho
