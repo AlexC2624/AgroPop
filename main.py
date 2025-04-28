@@ -34,13 +34,15 @@ sistema_var = { # Variável base do sistema
                             "colunas": {
                                 CSV["insumo_dados"]:{
                                     "nome": "Nome",
-                                },
+                                    "unidade": "Unidade de medida",
+                                    "fornecedor": "Fornecedor"
+                                }
                             }
                         },
                         "titulo": "Cadastro de Insumo",
                         "arquivo": CSV["insumo_dados"],  # Nome do arquivo para armazenar os dados.
                         "colunas": {
-                            "nome": ["Nome do Insumo", TXT_UNIC],   # Nome da pergunta, tipo de verificação.
+                            "nome": ["Nome do Insumo", TXT],   # Nome da pergunta, tipo de verificação.
                             "unidade": ["Unidade de medida", TXT],
                             "fornecedor": ["Fornecedor", TXT]
                         }
@@ -49,14 +51,17 @@ sistema_var = { # Variável base do sistema
                 "Compra de Insumo": {
                     "funcao": "start",
                     "argumento": {
-                        "dados_salvos": {   # Imprime os dados salvos por causa do ID que deve ser um existente
+                        "mostrar": {
                             "titulo": "Insumos Cadastrados",
-                            "arquivo": CSV["insumo_dados"],
-                            "colunas": ["ID", "Nome", "Unid.", "Fornecedor"],
-                            "exibir_estoque": {
-                                "arquivo": CSV["insumo_estoque"],
-                                "obter_coluna": "x",
-                                "adicionar_antes_de": ""
+                            "colunas": {
+                                CSV["insumo_dados"]:{
+                                    "ID": "ID",
+                                    "nome": "Nome",
+                                },
+                                # coluna com Qtd. em estoque
+                                CSV["insumo_dados"]:{
+                                    "unidade": "Unidade de medida",
+                                    "fornecedor": "Fornecedor",
                             }
                         },
                         "titulo": "Cadastro de Compra de Insumo",
@@ -94,7 +99,7 @@ sistema_var = { # Variável base do sistema
                         "arquivo": CSV["animal_comprado"],
                         "colunas": {
                             "data": ["Data da comprado", DATA],
-                            "nome": ["Nome do animal", TXT_UNIC],
+                            "nome": ["Nome do animal", TXT],
                             "peso": ["Peso (kg)", INTEIRO],
                             "preco_unitario": ["Preço por kg", PRECO],
                             "fornecedor": ["Fornecedor", TXT]
@@ -126,7 +131,7 @@ sistema_var = { # Variável base do sistema
                     "argumento": {
                         "titulo": "Cadastro de Categorias para Custos/Despesas",
                         "arquivo": CSV["categoria_financeiro"],
-                        "colunas": {"nome": ["Nome", TXT_UNIC]}
+                        "colunas": {"nome": ["Nome", TXT]}
                     },
                 },
                 "Custo/Despesa Adicional": {
