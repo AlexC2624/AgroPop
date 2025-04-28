@@ -1,12 +1,11 @@
 import json
 from armazenamento import Banco
 
-def atualizar_estoque(arquivos: dict, json_name= '.estoque_atual.json'):
+def json_atualizar(arquivos: dict, json_name= '.estoque_atual.json'):
     salvar = {}
 
     insumo_comprado = Banco(arquivos['insumo_comprado'])
     insumo_comprado = insumo_comprado.ler()
-    print(insumo_comprado)
 
     insumo_consumo  = Banco(arquivos['insumo_consumo'])
     insumo_consumo  = insumo_consumo.ler()
@@ -32,6 +31,10 @@ def atualizar_estoque(arquivos: dict, json_name= '.estoque_atual.json'):
     with open(json_name, 'w') as arq_json:
         json.dump(salvar, arq_json, indent= 4)
 
+def json_ler(json_name= '.estoque_atual.json'):
+    with open(json_name, 'r') as arq_json:
+        return json.load(arq_json)
+
 if __name__ == '__main__':
     CSV = {
         "insumo_dados": "insumo_dados.csv",
@@ -42,4 +45,5 @@ if __name__ == '__main__':
         "categoria_financeiro": "categoria_financeiro.csv",
         "custos_despesas": "custos_despesas.csv"
     }
-    atualizar_estoque(CSV)
+    json_atualizar(CSV)
+    print(json_ler())
