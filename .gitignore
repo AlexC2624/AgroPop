@@ -1,1 +1,4 @@
 .venv/
+.estoque_atual.json
+.dados/
+__pycache__/
